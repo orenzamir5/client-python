@@ -26,7 +26,7 @@ jobs:
       # Build pycti package
       - name: Build pycti
         run: |
-          pip install build==0.9.0
+          pip install build==0.9.0 twine==4.0.1
           python3 -m build
         
 
