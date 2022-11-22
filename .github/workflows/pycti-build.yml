@@ -26,13 +26,10 @@ jobs:
       # Build pycti package
       - name: Build pycti
         run: |
-          #python3 -m venv .venv
-          #source .venv/bin/activate
-          python --version
-          pip install build
+          pip install build==0.9.0
           python3 -m build
         
 
       # Push to Artifactory
-      #- name: Push to Artifactory
-      #  run: twine upload -u ${{ secrets.JF_USERNAME }} -p ${{ secrets.JF_PASSWORD }} --repository-url https://orentestenv.jfrog.io/artifactory/api/pypi/oren-test-pypi dist/*
+      - name: Push to Artifactory
+        run: twine upload -u ${{ secrets.JF_USERNAME }} -p ${{ secrets.JF_PASSWORD }} --repository-url https://orentestenv.jfrog.io/artifactory/api/pypi/oren-test-pypi dist/*
