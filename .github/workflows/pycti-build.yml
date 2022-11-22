@@ -17,18 +17,18 @@ jobs:
           ref: ${{ github.ref_name }}
 
       # Install Python 3.10
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          # Semantic version range syntax or exact version of a Python version
-          python-version: '3.10'
+#       - name: Set up Python
+#         uses: actions/setup-python@v4
+#         with:
+#           # Semantic version range syntax or exact version of a Python version
+#           python-version: '3.10'
       
       # Build pycti package
       - name: Build pycti
         run: |
           #python3 -m venv .venv
           #source .venv/bin/activate
-          ls -al
+          .git/config
           pip install build
           python3 -m build
         
