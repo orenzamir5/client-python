@@ -1,0 +1,38 @@
+name: pycti-build
+on:
+  push:
+    branches:
+      - orenz-aut-621-create-cicd-for-package
+  workflow_dispatch:
+jobs:
+  build_pycti_package:
+    name: build_pycti_package
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      # Checkout branch
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref_name }}
+
+      # Install Python 3.10
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          # Semantic version range syntax or exact version of a Python version
+          python-version: '3.10'
+      
+      # Build pycti package
+      - name: Build pycti
+        run: |
+          #python3 -m venv .venv
+          #source .venv/bin/activate
+          ls -al
+          pip install build
+          python3 -m build
+        
+
+      # Push to Artifactory
+      #- name: Push to Artifactory
+      #  run: twine upload -u ${{ secrets.JF_USERNAME }} -p ${{ secrets.JF_PASSWORD }} --repository-url https://orentestenv.jfrog.io/artifactory/api/pypi/oren-test-pypi dist/*
